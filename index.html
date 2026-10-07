@@ -4,222 +4,633 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mason Hainey | Portfolio</title>
+  <title>Mason Hainey | Finance + Technology</title>
+  <meta name="description" content="Mason Hainey is a Finance student at the University of Utah who builds data-driven web apps with AI, including a sports betting analytics app, an AI student dashboard and a gamified focus timer.">
+  <meta property="og:title" content="Mason Hainey | Finance + Technology">
+  <meta property="og:description" content="Finance student at the University of Utah building data-driven apps with AI.">
+  <meta property="og:image" content="https://masonhainey.github.io/images/hedgehog.jpg">
+  <meta name="theme-color" content="#0f1d33">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1d33'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMH%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-  * {
-    box-sizing: border-box;
-  }
-
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #f5f7fa;
-    color: #222;
-    line-height: 1.6;
-  }
-
-  nav {
-    background-color: #111827;
-    padding: 18px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-  }
-
-  nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 18px;
-    font-weight: bold;
-  }
-
-  nav a:hover {
-    color: #60a5fa;
-  }
-
-  header {
-    background-color: #1e3a5f;
-    color: white;
-    text-align: center;
-    padding: 70px 20px;
-  }
-
-  header h1 {
-    font-size: 42px;
-    margin-bottom: 5px;
-  }
-
-  header h2 {
-    font-size: 22px;
-    font-weight: normal;
-    margin: 5px;
-  }
-
-  section {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: white;
-    border-radius: 10px;
-  }
-
-  section h2 {
-    color: #1e3a5f;
-    border-bottom: 2px solid #e5e7eb;
-    padding-bottom: 8px;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-
-  th,
-  td {
-    padding: 14px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-  }
-
-  th {
-    background-color: #1e3a5f;
-    color: white;
-  }
-
-  a {
-    color: #2563eb;
-  }
-
-  @media (max-width: 600px) {
-    nav a {
-      display: block;
-      margin: 8px;
+    :root {
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --surface-2: #eef1f5;
+      --ink: #0f1d33;
+      --muted: #56627a;
+      --line: #e1e5ec;
+      --navy: #0f1d33;
+      --accent: #1f5fd1;
+      --accent-soft: #e6eefc;
+      --utah: #be0000;
+      --radius: 18px;
+      --shadow: 0 1px 2px rgba(15, 29, 51, .05), 0 12px 32px -14px rgba(15, 29, 51, .22);
+      --serif: "Newsreader", Georgia, serif;
+      --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
     }
 
-    header h1 {
-      font-size: 32px;
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1322;
+        --surface: #131d30;
+        --surface-2: #1a2640;
+        --ink: #edf1f8;
+        --muted: #a1acc2;
+        --line: #26334f;
+        --accent: #7fa8ff;
+        --accent-soft: #1d2c4d;
+        --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 16px 36px -16px rgba(0, 0, 0, .7);
+      }
     }
 
-    section {
-      margin: 20px 10px;
-      padding: 20px;
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; animation: none !important; }
     }
 
-    table {
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); }
+
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+
+    .skip {
+      position: absolute;
+      left: 16px;
+      top: -60px;
+      background: var(--surface);
+      padding: 10px 16px;
+      border-radius: 10px;
+      z-index: 100;
+    }
+
+    .skip:focus { top: 12px; }
+
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+    /* ---------- nav ---------- */
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: color-mix(in srgb, var(--bg) 82%, transparent);
+      backdrop-filter: saturate(1.4) blur(14px);
+      -webkit-backdrop-filter: saturate(1.4) blur(14px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .3s;
+    }
+
+    .nav.scrolled { border-bottom-color: var(--line); }
+
+    .nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      height: 68px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 700;
+      white-space: nowrap;
+      flex: none;
+    }
+
+    .mono {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    @media (prefers-color-scheme: dark) { .mono { background: var(--accent); color: var(--bg); } }
+
+    .links { display: flex; gap: 4px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+    .links::-webkit-scrollbar { display: none; }
+
+    .links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 15px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      transition: background .2s, color .2s;
+    }
+
+    .links a:hover { color: var(--ink); background: var(--surface-2); }
+    .links a.active { color: var(--ink); background: var(--surface); box-shadow: var(--shadow); }
+
+    /* ---------- buttons ---------- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 46px;
+      padding: 0 20px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      border: 1.5px solid transparent;
+      transition: transform .2s, background .2s, box-shadow .2s;
+      white-space: nowrap;
+    }
+
+    .btn svg { width: 18px; height: 18px; flex: none; }
+    .btn:hover { transform: translateY(-1px); }
+    .btn:active { transform: translateY(0); }
+    .btn.primary { background: var(--accent); color: #fff; box-shadow: 0 8px 20px -10px var(--accent); }
+    @media (prefers-color-scheme: dark) { .btn.primary { color: var(--bg); } }
+    .btn.primary:hover { box-shadow: 0 12px 24px -10px var(--accent); }
+    .btn.ghost { color: var(--ink); border-color: var(--line); background: var(--surface); }
+    .btn.ghost:hover { border-color: var(--muted); }
+    .btns { display: flex; flex-wrap: wrap; gap: 10px; }
+
+    /* ---------- hero ---------- */
+    .hero { padding-top: 72px; padding-bottom: 56px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 6px 14px 6px 10px;
+      margin: 0 0 22px;
     }
-  }
-</style>
+
+    .eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--utah); }
+
+    h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(44px, 7vw, 76px);
+      line-height: 1.02;
+      letter-spacing: -.02em;
+      margin: 0 0 20px;
+      max-width: 14ch;
+    }
+
+    h1 em { font-style: italic; color: var(--accent); }
+
+    .lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--muted); max-width: 60ch; margin: 0 0 30px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 48px;
+      max-width: 720px;
+    }
+
+    .stats div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 16px 18px; }
+    .stats b { display: block; font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.1; }
+    .stats span { font-size: 14px; color: var(--muted); }
+
+    /* ---------- sections ---------- */
+    section { padding: 56px 0; }
+
+    .sec-head { display: flex; align-items: end; justify-content: space-between; gap: 16px; margin-bottom: 28px; flex-wrap: wrap; }
+
+    h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(32px, 4.5vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -.015em;
+      margin: 0;
+    }
+
+    .kicker { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+    .sec-head p { color: var(--muted); margin: 0; max-width: 46ch; }
+
+    /* ---------- projects ---------- */
+    .projects { display: grid; gap: 22px; }
+
+    .project {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 0;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .project:nth-child(even) .media { order: 2; }
+
+    .media {
+      position: relative;
+      background: var(--surface-2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+    }
+
+    .media img, .media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .media video { background: #b9b2e6; object-fit: contain; }
+
+    .media.dark { background: #0d0d10; }
+    .media.dark img { object-fit: contain; }
+
+    .media.icon {
+      background: radial-gradient(120% 120% at 30% 20%, #3a1418 0%, #170a0c 60%, #0d0d10 100%);
+    }
+
+    .media.icon img { width: 132px; height: 132px; object-fit: contain; border-radius: 30px; box-shadow: 0 20px 50px -10px rgba(190, 0, 0, .45); }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #fff;
+      background: rgba(15, 29, 51, .78);
+      backdrop-filter: blur(8px);
+      padding: 5px 11px;
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .body { padding: 30px 32px 32px; display: flex; flex-direction: column; }
+
+    .body h3 { font-family: var(--serif); font-weight: 600; font-size: 30px; line-height: 1.15; margin: 0 0 4px; }
+    .tagline { color: var(--muted); margin: 0 0 16px; font-weight: 500; }
+
+    .body ul { margin: 0 0 18px; padding: 0; list-style: none; display: grid; gap: 10px; }
+    .body li { position: relative; padding-left: 22px; font-size: 15.5px; line-height: 1.55; }
+    .body li::before { content: ""; position: absolute; left: 2px; top: 9px; width: 8px; height: 8px; border-radius: 3px; background: var(--accent); opacity: .85; }
+
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 22px; }
+    .tags span { font-size: 13px; font-weight: 600; color: var(--muted); background: var(--surface-2); padding: 4px 11px; border-radius: 999px; }
+
+    .body .btns { margin-top: auto; }
+    .note { font-size: 13.5px; color: var(--muted); margin: 12px 0 0; }
+
+    /* ---------- about / skills ---------- */
+    .two { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+
+    .card { background: var(--surface); border: 1px solid var(--line); border-radius: 24px; padding: 30px 32px; box-shadow: var(--shadow); }
+    .card p { margin: 0 0 14px; }
+    .card p:last-child { margin-bottom: 0; }
+
+    .skillgroup + .skillgroup { margin-top: 22px; }
+    .skillgroup h3 { font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+    .chips li { font-size: 15px; font-weight: 600; padding: 7px 14px; border-radius: 12px; background: var(--accent-soft); color: var(--ink); }
+
+    .focus { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 22px; }
+    .focus div { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
+    .focus svg { width: 26px; height: 26px; color: var(--accent); margin-bottom: 10px; }
+    .focus b { display: block; font-size: 16px; margin-bottom: 4px; }
+    .focus span { font-size: 14.5px; color: var(--muted); line-height: 1.5; display: block; }
+
+    /* ---------- resume + contact ---------- */
+    .cta {
+      background: var(--navy);
+      color: #fff;
+      border-radius: 28px;
+      padding: 44px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) { .cta { background: #16264a; } }
+
+    .cta::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      top: -140px;
+      width: 380px;
+      height: 380px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(127, 168, 255, .35), transparent 70%);
+      pointer-events: none;
+    }
+
+    .cta h2 { color: #fff; }
+    .cta p { color: rgba(255, 255, 255, .78); margin: 12px 0 0; }
+    .cta .btn.primary { background: #fff; color: var(--navy); box-shadow: none; }
+    .cta .btn.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .35); }
+    .cta .btn.ghost:hover { border-color: #fff; }
+
+    .contact { display: grid; gap: 10px; position: relative; z-index: 1; }
+
+    .contact a {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .08);
+      color: #fff;
+      text-decoration: none;
+      transition: background .2s;
+    }
+
+    .contact a:hover { background: rgba(255, 255, 255, .16); }
+    .contact svg { width: 22px; height: 22px; flex: none; opacity: .9; }
+    .contact b { display: block; font-size: 15px; }
+    .contact span { font-size: 14px; opacity: .75; word-break: break-all; }
+
+    footer { padding: 36px 0 48px; color: var(--muted); font-size: 14px; text-align: center; }
+
+    /* ---------- reveal on scroll ---------- */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.in { opacity: 1; transform: none; }
+    .no-js .reveal { opacity: 1; transform: none; }
+
+    /* ---------- responsive ---------- */
+    @media (max-width: 860px) {
+      .project, .two, .cta { grid-template-columns: 1fr; }
+      .project:nth-child(even) .media { order: 0; }
+      .media { min-height: 0; aspect-ratio: 16 / 10; }
+      .media.icon { aspect-ratio: 16 / 8; }
+      .focus { grid-template-columns: repeat(2, 1fr); }
+      .cta { padding: 32px 26px; }
+    }
+
+    @media (max-width: 560px) {
+      .wrap { padding: 0 16px; }
+      .nav .brand span:not(.mono) { display: none; }
+      .links a { padding: 8px 10px; font-size: 14px; }
+      .hero { padding-top: 40px; padding-bottom: 32px; }
+      .links a.opt { display: none; }
+      .stats { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+      .stats div { padding: 12px; }
+      .stats b { font-size: 24px; }
+      .stats span { font-size: 12.5px; }
+      .body { padding: 22px 20px 24px; }
+      .card { padding: 24px 20px; }
+      .focus { grid-template-columns: 1fr; }
+      section { padding: 40px 0; }
+      .btn { flex: 1 1 auto; justify-content: center; }
+    }
+  </style>
 </head>
 
-<body>
-  
-<nav>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#resume">Resume</a>
-  <a href="#contact">Contact</a>
-</nav>
-  
-  <header>
-    <h1>Mason Hainey</h1>
-    <h2>Finance Student</h2>
-    <p>University of Utah</p>
-  </header>
+<body class="no-js">
+  <a class="skip" href="#main">Skip to content</a>
 
-<section id="about">
-  <h2>About Me</h2>
+  <nav class="nav" aria-label="Main">
+    <div class="wrap">
+      <a class="brand" href="#top"><span class="mono" aria-hidden="true">MH</span><span>Mason Hainey</span></a>
+      <div class="links">
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a class="opt" href="#skills">Skills</a>
+        <a href="Mason-Hainey-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
 
-  <p>
-    I am a Finance student at the University of Utah with interests in
-    investment analysis, financial technology, and data-driven decision-making.
-    I enjoy learning how technology and artificial intelligence can be used to
-    improve financial analysis, evaluate businesses, and support better
-    decision-making. My technical interests include data analytics, financial
-    modeling, AI tools, and web development. I am currently developing my
-    skills in areas such as HTML, Python, SQL, Excel, and GitHub while gaining
-    experience applying technology to real-world business problems. I am
-    particularly interested in opportunities that combine finance, technology,
-    and analytical problem-solving, and I hope to continue building experience
-    through projects, internships, and coursework.
-  </p>
-</section>
+  <main id="main">
+    <header class="hero wrap" id="top">
+      <p class="eyebrow"><i aria-hidden="true"></i>Finance student · University of Utah</p>
+      <h1>Finance meets <em>technology.</em></h1>
+      <p class="lead">I'm Mason, a Finance student who builds data-driven tools with AI. I've designed and launched three web apps, from a sports betting analytics platform to an AI dashboard that runs my recruiting and classes.</p>
+      <div class="btns">
+        <a class="btn primary" href="#projects">See my projects
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
+        <a class="btn ghost" href="Mason-Hainey-Resume.pdf" target="_blank" rel="noopener">View resume</a>
+      </div>
+      <div class="stats" aria-label="Highlights">
+        <div><b>3</b><span>apps designed and launched</span></div>
+        <div><b>175</b><span>cities on a 3D flight globe</span></div>
+        <div><b>5 min</b><span>automated alert checks</span></div>
+      </div>
+    </header>
 
-  <section id="skills">
-  <h2>Skills</h2>
+    <section id="projects">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div>
+            <p class="kicker">Projects</p>
+            <h2>Things I've built</h2>
+          </div>
+          <p>Each app was designed and built by me, using Claude Code as an AI pair programmer.</p>
+        </div>
 
-  <ul>
-    <li>Microsoft Excel</li>
-    <li>Financial Analysis</li>
-    <li>Data Analytics</li>
-    <li>Python</li>
-    <li>SQL</li>
-    <li>HTML</li>
-    <li>Git</li>
-    <li>GitHub</li>
-    <li>AI Prompt Engineering</li>
-  </ul>
-</section>
+        <div class="projects">
+          <article class="project reveal">
+            <div class="media dark">
+              <img src="images/hedgehog.jpg" alt="hedgehog dashboard showing net profit, a profit chart and an open parlay" loading="lazy">
+              <span class="badge">Live app</span>
+            </div>
+            <div class="body">
+              <h3>hedgehog</h3>
+              <p class="tagline">Sports betting analytics with live scores and a game model</p>
+              <ul>
+                <li>Tracks bets from any sportsbook and reports net profit, ROI, win rate and a profit curve.</li>
+                <li>Follows open bets live with ESPN scores, injury news and schedule changes, and grades them automatically when games end.</li>
+                <li>Reads bet slips from screenshots, shows where money is being lost, and includes a game-rating model checked against closing lines.</li>
+                <li>Friend leaderboards, shareable tickets, and phone alerts that work even when the app is closed.</li>
+              </ul>
+              <div class="tags"><span>JavaScript</span><span>ESPN data</span><span>Supabase</span><span>GitHub Actions</span><span>Installable web app</span></div>
+              <div class="btns">
+                <a class="btn primary" href="https://masonhainey.github.io/betting-proj/" target="_blank" rel="noopener">Try it now
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+                <a class="btn ghost" href="https://github.com/masonhainey/betting-proj" target="_blank" rel="noopener">View code</a>
+              </div>
+              <p class="note">Tip: click "Explore with demo data" to try it with sample bets.</p>
+            </div>
+          </article>
 
-  <section id="projects">
-  <h2>Projects</h2>
+          <article class="project reveal">
+            <div class="media">
+              <video src="videos/cruising-altitude-demo.mp4" poster="images/cruising-altitude-poster.jpg" controls playsinline preload="none" aria-label="One-minute demo of Cruising Altitude for a new user"></video>
+            </div>
+            <div class="body">
+              <h3>Cruising Altitude</h3>
+              <p class="tagline">A focus timer where every work session is a flight</p>
+              <ul>
+                <li>Matches a focus session's length to a real flight to one of about 175 cities worldwide.</li>
+                <li>Animates the flight live on a 3D globe, with a boarding pass, a seat map and a passport stamp when you land.</li>
+                <li>Keeps you coming back with daily goals, streaks, a flight log, and planes you unlock as you log hours.</li>
+              </ul>
+              <div class="tags"><span>JavaScript</span><span>Three.js</span><span>3D graphics</span><span>Responsive design</span></div>
+              <div class="btns">
+                <a class="btn primary" href="cruising-altitude/" target="_blank" rel="noopener">Try it now
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+              </div>
+              <p class="note">Press play for a one-minute tour of a first flight. Free, no account needed.</p>
+            </div>
+          </article>
 
-  <table>
-    <tr>
-      <th>Project</th>
-      <th>Description</th>
-    </tr>
+          <article class="project reveal">
+            <div class="media icon">
+              <img src="images/semester-hq-icon.png" alt="Semester HQ app icon" loading="lazy">
+              <span class="badge">Private beta</span>
+            </div>
+            <div class="body">
+              <h3>Semester HQ</h3>
+              <p class="tagline">An AI command center for classes, recruiting and study abroad</p>
+              <ul>
+                <li>Connects to Gmail and Google Calendar and uses Claude to sort recruiting emails into an internship application tracker.</li>
+                <li>Pulls assignments and exams from class calendars, finds free time, and books study sessions before each exam.</li>
+                <li>Tracks networking contacts and follow-ups, and syncs new emails and calendar changes overnight.</li>
+              </ul>
+              <div class="tags"><span>JavaScript</span><span>Claude AI</span><span>Gmail API</span><span>Google Calendar API</span><span>Automation</span></div>
+              <div class="btns">
+                <a class="btn primary" href="mailto:u1506080@utah.edu?subject=Semester%20HQ%20demo">Request a demo</a>
+              </div>
+              <p class="note">It runs on my own email and calendar, so it isn't public. Happy to walk through it live.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
-    <tr>
-      <td>Financial Analysis</td>
-      <td>Analyze financial and business data to support investment decisions.</td>
-    </tr>
+    <section id="about">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div>
+            <p class="kicker">About</p>
+            <h2>Where finance and tech meet</h2>
+          </div>
+        </div>
+        <div class="two">
+          <div class="card reveal">
+            <p>I am a Finance student at the University of Utah with interests in investment analysis, financial technology, and data-driven decision-making.</p>
+            <p>I enjoy learning how technology and artificial intelligence can improve financial analysis, evaluate businesses, and support better decisions. My technical interests include data analytics, financial modeling, AI tools, and web development.</p>
+            <p>I'm looking for opportunities that combine finance, technology, and analytical problem-solving, and I keep building experience through projects, internships, and coursework.</p>
+          </div>
+          <div class="card reveal" id="skills">
+            <div class="skillgroup">
+              <h3>Finance &amp; analysis</h3>
+              <ul class="chips"><li>Microsoft Excel</li><li>Financial Analysis</li><li>Data Analytics</li></ul>
+            </div>
+            <div class="skillgroup">
+              <h3>Technical</h3>
+              <ul class="chips"><li>Python</li><li>SQL</li><li>JavaScript</li><li>HTML</li><li>CSS</li><li>Git</li><li>GitHub</li><li>APIs and Integrations</li></ul>
+            </div>
+            <div class="skillgroup">
+              <h3>AI</h3>
+              <ul class="chips"><li>AI Prompt Engineering</li><li>Claude Code</li><li>AI-assisted development</li></ul>
+            </div>
+          </div>
+        </div>
 
-    <tr>
-      <td>AI Business Analysis</td>
-      <td>Use AI tools to analyze business problems and develop recommendations.</td>
-    </tr>
+        <div class="focus">
+          <div class="reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 5-6"/></svg>
+            <b>Financial Analysis</b><span>Analyze financial and business data to support investment decisions.</span>
+          </div>
+          <div class="reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><circle cx="12" cy="12" r="5"/></svg>
+            <b>AI Business Analysis</b><span>Use AI tools to analyze business problems and develop recommendations.</span>
+          </div>
+          <div class="reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="12" width="4" height="9" rx="1"/><rect x="10" y="7" width="4" height="14" rx="1"/><rect x="17" y="3" width="4" height="18" rx="1"/></svg>
+            <b>Data Visualization</b><span>Create visualizations and dashboards to communicate data-driven insights.</span>
+          </div>
+          <div class="reveal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 14l-2 2 2 2M16 14l2 2-2 2"/></svg>
+            <b>Web Development</b><span>Build responsive web apps and this portfolio with HTML, CSS and JavaScript.</span>
+          </div>
+        </div>
+      </div>
+    </section>
 
-    <tr>
-      <td>Data Visualization</td>
-      <td>Create visualizations and dashboards to communicate data-driven insights.</td>
-    </tr>
+    <section id="resume">
+      <div class="wrap">
+        <div class="cta reveal" id="contact">
+          <div>
+            <p class="kicker" style="color:#9cbcff">Resume &amp; contact</p>
+            <h2>Let's talk</h2>
+            <p>I'm open to internships in finance, fintech and analytics. My resume has the full picture.</p>
+            <div class="btns" style="margin-top:24px">
+              <a class="btn primary" href="Mason-Hainey-Resume.pdf" target="_blank" rel="noopener">View resume</a>
+              <a class="btn ghost" href="Mason-Hainey-Resume.pdf" download>Download PDF</a>
+            </div>
+          </div>
+          <div class="contact">
+            <a href="mailto:u1506080@utah.edu">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+              <div><b>Email</b><span>u1506080@utah.edu</span></div>
+            </a>
+            <a href="https://www.linkedin.com/in/masonhainey" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4V21H3V9.75Zm6.5 0h3.8v1.6h.06c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.77 2.5 4.77 5.75V21h-4v-5.1c0-1.22-.02-2.78-1.8-2.78-1.8 0-2.08 1.33-2.08 2.7V21h-4V9.75Z"/></svg>
+              <div><b>LinkedIn</b><span>linkedin.com/in/masonhainey</span></div>
+            </a>
+            <a href="https://github.com/masonhainey" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.9 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+              <div><b>GitHub</b><span>github.com/masonhainey</span></div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <tr>
-      <td>Web Development</td>
-      <td>Develop a responsive professional portfolio using HTML and CSS.</td>
-    </tr>
-  </table>
-</section>
+  <footer>
+    <div class="wrap">© 2026 Mason Hainey · Built with HTML, CSS and JavaScript · Hosted on GitHub Pages</div>
+  </footer>
 
-<section id="resume">
-  <h2>Resume</h2>
-  <p>
-    <a href="Mason-Hainey-Resume.pdf" target="_blank">
-      View / Download My Resume
-    </a>
-  </p>
-</section>
+  <script>
+    document.body.classList.remove("no-js");
 
-<section id="contact">
-  <h2>Contact</h2>
+    // fade sections in as they scroll into view
+    const io = "IntersectionObserver" in window ? new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { rootMargin: "0px 0px -8% 0px" }) : null;
+    document.querySelectorAll(".reveal").forEach(el => io ? io.observe(el) : el.classList.add("in"));
 
-  <p>
-    Email:
-    <a href="mailto:u1506080@utah.edu">u1506080@utah.edu</a>
-  </p>
-  <p>
-    LinkedIn:
-    <a href="https://www.linkedin.com/in/masonhainey" target="_blank">View my LinkedIn</a>
-  </p>
-  <p>
-    GitHub:
-    <a href="https://github.com/masonhainey" target="_blank">View my GitHub</a>
-  </p>
-</section>
-  
-  
+    // nav: border once scrolled, highlight the section in view
+    const nav = document.querySelector(".nav");
+    const links = [...document.querySelectorAll('.links a[href^="#"]')];
+    const targets = links.map(a => document.querySelector(a.getAttribute("href")));
+    function onScroll() {
+      nav.classList.toggle("scrolled", scrollY > 8);
+      let current = null;
+      targets.forEach((t, i) => { if (t && t.getBoundingClientRect().top < 140) current = i; });
+      if (innerHeight + scrollY >= document.documentElement.scrollHeight - 4) current = links.length - 1;
+      links.forEach((a, i) => a.classList.toggle("active", i === current));
+    }
+    addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+  </script>
 </body>
 
 </html>
