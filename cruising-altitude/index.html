@@ -1419,6 +1419,7 @@ const Globe=(()=>{
   const hemi=new T.HemisphereLight(0xffffff,0xc5cde0,.6);scene.add(hemi);
   const sun=new T.DirectionalLight(0xffffff,.42);scene.add(sun);scene.add(sun.target);
   const fog=new T.Fog(0xe9eef6,10,20);scene.fog=fog;
+  const TRACK=1.0022;   // height of route lines and city markers, just above the map
   const v3=(lat,lon,r=1)=>{const p=lat*RAD,l=lon*RAD;return new T.Vector3(r*Math.cos(p)*Math.cos(l),r*Math.sin(p),-r*Math.cos(p)*Math.sin(l))};
   const toLL=v=>{const r=v.length();return{lat:Math.asin(v.y/r)/RAD,lon:Math.atan2(-v.z,v.x)/RAD,r}};
   const maxTex=renderer.capabilities.maxTextureSize;
@@ -1481,7 +1482,7 @@ const Globe=(()=>{
   /* route tubes */
   const dcv=document.createElement("canvas");dcv.width=64;dcv.height=4;(()=>{const c=dcv.getContext("2d");c.fillStyle="#fff";c.fillRect(0,0,30,4)})();
   const dashTex=new T.CanvasTexture(dcv);dashTex.wrapS=T.RepeatWrapping;
-  const trailMat=new T.MeshBasicMaterial({color:0xEF9479,fog:false});
+  const trailMat=new T.MeshBasicMaterial({color:0xEF9479,fog:false,transparent:true,opacity:1});
   const remMat=new T.MeshBasicMaterial({color:0xffffff,map:dashTex,transparent:true,opacity:.95,fog:false,depthWrite:false});
   const RS=6;let trail=null,rem=null,tubeR=0,tubeCurve=null,segs=0,arcAng=0;
   const logGroup=new T.Group();scene.add(logGroup);let logTubeR=0,logList=[];
@@ -1494,28 +1495,28 @@ const Globe=(()=>{
   const ptrs=new Map();let pinch0=0;
 
   function addLabels(list){labelsEl.innerHTML="";labelEls=list.map(o=>{const d=document.createElement("div");d.className="lbl"+(o.end?" end":"");
-    d.innerHTML=o.end?`<i></i><span><b>${o.c.c}</b>${o.c.n}</span>`:`<i></i><span>${o.c.c}</span>`;labelsEl.appendChild(d);return{...o,el:d,p:v3(o.c.lat,o.c.lon,1.002)}})}
+    d.innerHTML=o.end?`<i></i><span><b>${o.c.c}</b>${o.c.n}</span>`:`<i></i><span>${o.c.c}</span>`;labelsEl.appendChild(d);return{...o,el:d,p:v3(o.c.lat,o.c.lon,TRACK)}})}
   function attach(el,lab,k){host=el;labelsEl=lab;kind=k;el.insertBefore(canvas,el.firstChild);onTheme();
     plane.visible=shadow.visible=k==="flight";logGroup.visible=k==="log";if(trail)trail.visible=rem.visible=k==="flight";
     if(k==="log"){mode="explore";setLog()}
     resize(true);start()}
   function detach(){stop()}
-  function setFlight(r){const ac=curAc();setAircraft(ac.p,ac.l);route=r;route3=r.map(p=>v3(p.lat,p.lon,1));tubeCurve=new T.CatmullRomCurve3(route3.map(v=>v.clone().multiplyScalar(1.0075)));segs=route3.length-1;arcAng=route3[0].angleTo(route3[segs]);tubeR=0;
+  function setFlight(r){const ac=curAc();setAircraft(ac.p,ac.l);route=r;route3=r.map(p=>v3(p.lat,p.lon,1));tubeCurve=new T.CatmullRomCurve3(route3.map(v=>v.clone().multiplyScalar(TRACK)));segs=route3.length-1;arcAng=route3[0].angleTo(route3[segs]);tubeR=0;
     const a=byCode[active.from],b=byCode[active.to];
     labelsEl=$("labels");addLabels(CITIES.map(c=>({c,end:c===a||c===b})));
     mode=lsGet("ca-cam")||"follow";fYaw=0;fPitch=.3;fDist=.034;
     const m=route3[Math.floor(segs/2)].clone().normalize();cam.pos.copy(m.clone().multiplyScalar(1+routeDist()+.6));cam.tgt.copy(m);cam.up.set(0,1,0);syncTabs()}
   function buildTubes(r){if(trail){scene.remove(trail,rem);trail.geometry.dispose();rem.geometry.dispose()}
     const g=new T.TubeGeometry(tubeCurve,segs,r,RS,false);trail=new T.Mesh(g,trailMat);rem=new T.Mesh(g.clone(),remMat);
-    dashTex.repeat.set(arcAng*1.0075/(r*9),1);scene.add(trail,rem);tubeR=r}
+    dashTex.repeat.set(arcAng*TRACK/(r*9),1);trail.renderOrder=rem.renderOrder=3;scene.add(trail,rem);tubeR=r}
   function setLog(list){logList=list||logbook;logGroup.children.slice().forEach(m=>{logGroup.remove(m);m.geometry.dispose()});logTubeR=0;
     const seen=new Map();logList.forEach(x=>{const a=byCode[x.from],b=byCode[x.to];if(a&&b){seen.set(a.c,a);seen.set(b.c,b)}});
     labelsEl=$("logLabels");addLabels([...seen.values()].map(c=>({c,end:false,visited:true})));
     if(logList[0]&&byCode[logList[0].to]){const c=byCode[logList[0].to];exp={lat:clamp(c.lat,-50,60),lon:c.lon,d:2.8}}
     cam.pos.copy(v3(exp.lat,exp.lon,exp.d));cam.tgt.set(0,0,0);cam.up.set(0,1,0)}
   function buildLogTubes(r){logGroup.children.slice().forEach(m=>{logGroup.remove(m);m.geometry.dispose()});
-    logList.forEach(x=>{const a=byCode[x.from],b=byCode[x.to];if(!a||!b)return;const c=new T.CatmullRomCurve3(arc(a,b,90).map(p=>v3(p.lat,p.lon,1.0075)));
-      logGroup.add(new T.Mesh(new T.TubeGeometry(c,90,r,RS,false),x.diverted?remMat:trailMat))});logTubeR=r}
+    logList.forEach(x=>{const a=byCode[x.from],b=byCode[x.to];if(!a||!b)return;const c=new T.CatmullRomCurve3(arc(a,b,90).map(p=>v3(p.lat,p.lon,TRACK)));
+      const m=new T.Mesh(new T.TubeGeometry(c,90,r,RS,false),x.diverted?remMat:trailMat);m.renderOrder=3;logGroup.add(m)});logTubeR=r}
 
   function routeDist(){const asp=host?host.clientWidth/host.clientHeight:.8;return clamp(arcAng*1.25+.32,.42,3.2)*Math.max(1,Math.sqrt(.95/asp))}
   function syncTabs(){document.querySelectorAll(".camseg button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.cam===mode));$("recenter").classList.toggle("on",mode==="explore"&&kind==="flight")}
@@ -1551,7 +1552,7 @@ const Globe=(()=>{
     if(kind==="flight"&&route3&&active){f=elapsed()/active.durMs;const x=f*segs,i=Math.min(segs-1,Math.floor(x)),u=x-i;
       tmp.copy(route3[i]).lerp(route3[i+1],u).normalize();N=tmp.clone();
       const s=t=>t*t*(3-2*t);lift=f<.08?s(f/.08):f>.9?s((1-f)/.1):1;
-      P=N.clone().multiplyScalar(1.0078+.0042*lift);
+      P=N.clone().multiplyScalar(TRACK+.0012+.0028*lift);
       F=route3[Math.min(segs,i+1)].clone().sub(route3[Math.max(0,i)]);F.addScaledVector(N,-F.dot(N)).normalize();focus=P}
     // desired camera
     const dp=new T.Vector3(),dtg=new T.Vector3(),du=new T.Vector3(0,1,0);let kTarget=.05;
@@ -1577,7 +1578,7 @@ const Globe=(()=>{
       const right=new T.Vector3().crossVectors(N,F).normalize();m4.makeBasis(right,N,F);plane.quaternion.setFromRotationMatrix(m4);
       const climb=f<.08?-.12:f>.9?.07:0;plane.rotateX(climb*(lift<1?1:0));plane.position.copy(P);plane.scale.setScalar(L);
       const blink=t%1300<90,bk=(t+500)%1000<140;plane.userData.strobes.forEach(s=>s.visible=blink);plane.userData.beacon.visible=bk;plane.userData.props.forEach(p=>p.rotation.z+=dt*30);
-      shadow.visible=mode!=="follow";shadow.position.copy(N).multiplyScalar(1.0018);m4.makeBasis(right,F,N);shadow.quaternion.setFromRotationMatrix(m4);shadow.scale.setScalar(L*1.05*(1+lift*.15));shadow.material.opacity=.24-.12*lift;
+      shadow.visible=mode!=="follow";shadow.position.copy(N).multiplyScalar(TRACK-.0004);m4.makeBasis(right,F,N);shadow.quaternion.setFromRotationMatrix(m4);shadow.scale.setScalar(L*1.05*(1+lift*.15));shadow.material.opacity=.24-.12*lift;
       const want=clamp(dPl*.0042,.00008,.012);if(!trail||Math.abs(Math.log(want/tubeR))>.18)buildTubes(want);
       const x=f*segs,done=Math.floor(x);trail.geometry.setDrawRange(0,done*RS*6);rem.geometry.setDrawRange(done*RS*6,(segs-done)*RS*6)}
     if(kind==="log"){const want=clamp((exp.d-1)*.0042,.0004,.012);if(!logTubeR||Math.abs(Math.log(want/logTubeR))>.25)buildLogTubes(want)}
