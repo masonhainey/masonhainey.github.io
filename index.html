@@ -14,10 +14,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <script>
-    // links like /?focus=finance show the page without hedgehog; the setting carries over to in-page links
-    if (new URLSearchParams(location.search).get("focus") === "finance") document.documentElement.dataset.focus = "finance";
-  </script>
   <style>
     :root {
       --bg: #f5f6f8;
@@ -178,9 +174,6 @@
     .btn.ghost:hover { border-color: var(--muted); }
     .btns { display: flex; flex-wrap: wrap; gap: 10px; }
 
-    /* ?focus=finance: a version of the page without the sports analytics project */
-    [data-focus="finance"] .hh { display: none !important; }
-
     /* ---------- hero ---------- */
     .hero { padding-top: 72px; padding-bottom: 56px; position: relative; }
     main { overflow-x: clip; }
@@ -261,7 +254,6 @@
     }
 
     .project:nth-child(even) .media { order: 2; }
-    [data-focus="finance"] .project:nth-child(3) .media { order: 2; }
 
     .media {
       position: relative;
@@ -441,7 +433,6 @@
     @media (max-width: 860px) {
       .project, .two, .cta { grid-template-columns: 1fr; }
       .project:nth-child(even) .media { order: 0; }
-      [data-focus="finance"] .project:nth-child(3) .media { order: 0; }
       .media { min-height: 0; aspect-ratio: 16 / 10; }
       .media.icon { aspect-ratio: 16 / 8; }
       .focus { grid-template-columns: repeat(2, 1fr); }
@@ -495,7 +486,7 @@
         <p class="ucaption" aria-hidden="true">Finance, Class of 2028</p>
       </div>
       <h1>I build the tools<br> <em>I wish I had.</em></h1>
-      <p class="lead">I'm Mason, a Finance student who builds data-driven tools with AI. I've designed and launched three web apps, from an AI dashboard that runs my recruiting and classes to a 3D productivity app<span class="hh"> and a sports analytics platform</span>.</p>
+      <p class="lead">I'm Mason, a Finance student who builds data-driven tools with AI. I've designed and launched three web apps, from an AI dashboard that runs my recruiting and classes to a 3D productivity app and a sports analytics platform.</p>
       <div class="btns">
         <a class="btn primary" href="#projects">See my projects
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12l7 7 7-7"/></svg></a>
@@ -540,21 +531,21 @@
             </div>
           </article>
 
-          <article class="project reveal hh">
+          <article class="project reveal">
             <div class="media dark">
               <img src="images/hedgehog.jpg" alt="hedgehog dashboard showing net profit, a profit chart and an open parlay" loading="lazy">
               <span class="badge">Live app</span>
             </div>
             <div class="body">
               <h3>hedgehog</h3>
-              <p class="tagline">Sports analytics platform with a predictive game model</p>
+              <p class="tagline">Sports betting analytics with live scores and a game model</p>
               <ul>
-                <li>Rates games with a model and checks it against closing lines, much like backtesting a trading strategy against the market.</li>
-                <li>Tracks results like a portfolio, with net profit, ROI, win rate and a profit curve across every sportsbook.</li>
-                <li>Runs an automated data pipeline: live ESPN scores, injury news and schedule changes, with results graded when games end.</li>
-                <li>Reads bet slips from screenshots, with friend leaderboards and phone alerts that work even when the app is closed.</li>
+                <li>Tracks bets from any sportsbook and reports net profit, ROI, win rate and a profit curve.</li>
+                <li>Follows open bets live with ESPN scores, injury news and schedule changes, and grades them automatically when games end.</li>
+                <li>Reads bet slips from screenshots, shows where money is being lost, and includes a game-rating model checked against closing lines.</li>
+                <li>Friend leaderboards, shareable tickets, and phone alerts that work even when the app is closed.</li>
               </ul>
-              <div class="tags"><span>Predictive modeling</span><span>JavaScript</span><span>ESPN data</span><span>Supabase</span><span>GitHub Actions</span><span>Installable web app</span></div>
+              <div class="tags"><span>JavaScript</span><span>ESPN data</span><span>Supabase</span><span>GitHub Actions</span><span>Installable web app</span></div>
               <div class="btns">
                 <a class="btn primary" href="https://masonhainey.github.io/betting-proj/" target="_blank" rel="noopener">Try it now
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
