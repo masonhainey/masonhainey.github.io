@@ -771,7 +771,7 @@
       new IntersectionObserver(([e]) => { visible = e.isIntersecting; }).observe(stage);
       function frame(now) {
         const dt = Math.min(now - last, 50); last = now;
-        u.rotation.y += dt * .00075;
+        u.rotation.y += dt * .0005;
         if (visible) renderer.render(scene, camera);
         requestAnimationFrame(frame);
       }
