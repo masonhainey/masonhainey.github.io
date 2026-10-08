@@ -105,6 +105,8 @@
     const release = () => { st.hold = false; st.clock = Math.round(st.shown / Math.PI) * CYCLE; };
     card.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") st.hold = true; });
     card.addEventListener("pointerleave", e => { if (e.pointerType === "mouse") release(); });
+    // clicking the coin itself (with a mouse) opens the verification page
+    if (card.dataset.href) card.querySelector(".coinbox").addEventListener("click", e => { if (e.pointerType !== "touch") window.open(card.dataset.href, "_blank", "noopener"); });
     card.addEventListener("pointerdown", e => { if (e.pointerType !== "mouse") { st.hold = true; clearTimeout(st.t); st.t = setTimeout(release, 3500); } });
     new IntersectionObserver(([e]) => st.visible = e.isIntersecting, { rootMargin: "100px" }).observe(card);
     return st;

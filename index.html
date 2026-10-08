@@ -22,7 +22,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f1d33'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='28' font-weight='700' fill='white' text-anchor='middle'%3EMH%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg: #f5f6f8;
@@ -195,11 +195,13 @@
     .hero > :not(.ustage) { position: relative; z-index: 1; }
     .ucanvas, .ufallback { position: absolute; inset: 0; width: 100%; height: 100%; }
     .ufallback { inset: 22%; width: 56%; height: 56%; object-fit: contain; }
-    .ustage.gl .ufallback, .ustage.gltext .ucaption { display: none; }
+    .ustage.gl .ufallback { display: none; }
+    .ucaption { display: none; }
+    .ustage.nogl .ucaption { display: block; }
     .ucaption {
       position: absolute; left: 50%; bottom: 13%; margin: 0;
       transform: translateX(-12%) rotate(-9deg); transform-origin: left bottom;
-      font-family: "Caveat", cursive; font-weight: 700; font-size: 44px; line-height: 1;
+      font-family: "Segoe Script", "Bradley Hand", cursive; font-weight: 700; font-size: 44px; line-height: 1;
       color: var(--ink); white-space: nowrap;
     }
     .hero .lead { max-width: min(54ch, calc(100% - 520px)); }
@@ -364,6 +366,11 @@
     .cert figcaption { margin-top: 4px; }
     .cert figcaption b { display: block; font-size: 15.5px; line-height: 1.3; }
     .cert figcaption span { font-size: 13.5px; color: var(--muted); }
+    .cert figcaption span { display: block; }
+    .cert .verify { display: inline-flex; align-items: center; gap: 4px; margin-top: 4px; font-size: 13.5px; font-weight: 700; color: var(--accent); text-decoration: none; }
+    .cert .verify:hover { text-decoration: underline; }
+    .cert .verify svg { width: 13px; height: 13px; }
+    .cert[data-href] .coinbox { cursor: pointer; }
     @media (max-width: 560px) { .certs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
     /* ---------- resume + contact ---------- */
@@ -657,45 +664,45 @@
           <p>Bloomberg, IBM, Anthropic, Databricks and The Global Career Accelerator. Hover or tap a coin to hold it still.</p>
         </div>
         <div class="certs">
-          <figure class="cert reveal" data-shape="rect" data-aspect="1.42" data-title="Bloomberg Market Concepts" data-issuer="Bloomberg for Education" data-accent="#c47a12">
+          <figure class="cert reveal" data-href="https://portal.bloombergforeducation.com/certificates/RRQU4faP3YC2WYXKYKepZBwA" data-shape="rect" data-aspect="1.42" data-title="Bloomberg Market Concepts" data-issuer="Bloomberg for Education" data-accent="#c47a12">
             <div class="coinbox"><img src="images/certs/bmc.jpg" alt="Bloomberg Market Concepts certificate from Bloomberg for Education" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Bloomberg Market Concepts</b><span>Bloomberg for Education</span></figcaption>
+            <figcaption><b>Bloomberg Market Concepts</b><span>Bloomberg for Education</span><a class="verify" href="https://portal.bloombergforeducation.com/certificates/RRQU4faP3YC2WYXKYKepZBwA" target="_blank" rel="noopener" aria-label="Verify Bloomberg Market Concepts from Bloomberg for Education">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="rect" data-aspect="1.421" data-title="Bloomberg Finance Fundamentals" data-issuer="Bloomberg for Education" data-accent="#2f5fd0">
+          <figure class="cert reveal" data-href="https://portal.bloombergforeducation.com/certificates/LGyNpwT8ZJgFr7TC2GPhrf61" data-shape="rect" data-aspect="1.421" data-title="Bloomberg Finance Fundamentals" data-issuer="Bloomberg for Education" data-accent="#2f5fd0">
             <div class="coinbox"><img src="images/certs/bff.jpg" alt="Bloomberg Finance Fundamentals certificate from Bloomberg for Education" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Bloomberg Finance Fundamentals</b><span>Bloomberg for Education</span></figcaption>
+            <figcaption><b>Bloomberg Finance Fundamentals</b><span>Bloomberg for Education</span><a class="verify" href="https://portal.bloombergforeducation.com/certificates/LGyNpwT8ZJgFr7TC2GPhrf61" target="_blank" rel="noopener" aria-label="Verify Bloomberg Finance Fundamentals from Bloomberg for Education">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="rect" data-aspect="1.408" data-title="Bloomberg Spreadsheet Analysis" data-issuer="Bloomberg for Education" data-accent="#1f8a78">
+          <figure class="cert reveal" data-href="https://portal.bloombergforeducation.com/certificates/gjZSMk3WdYG8b6NzuA73hdw6" data-shape="rect" data-aspect="1.408" data-title="Bloomberg Spreadsheet Analysis" data-issuer="Bloomberg for Education" data-accent="#1f8a78">
             <div class="coinbox"><img src="images/certs/bsa.jpg" alt="Bloomberg Spreadsheet Analysis certificate from Bloomberg for Education" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Bloomberg Spreadsheet Analysis</b><span>Bloomberg for Education</span></figcaption>
+            <figcaption><b>Bloomberg Spreadsheet Analysis</b><span>Bloomberg for Education</span><a class="verify" href="https://portal.bloombergforeducation.com/certificates/gjZSMk3WdYG8b6NzuA73hdw6" target="_blank" rel="noopener" aria-label="Verify Bloomberg Spreadsheet Analysis from Bloomberg for Education">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="rect" data-aspect="1" data-title="Data Fundamentals" data-issuer="IBM SkillsBuild" data-accent="#b0306f">
+          <figure class="cert reveal" data-href="https://www.credly.com/badges/b8dcce38-8507-47fe-9033-03f9079af939" data-shape="rect" data-aspect="1" data-title="Data Fundamentals" data-issuer="IBM SkillsBuild" data-accent="#b0306f">
             <div class="coinbox"><img src="images/certs/ibm.jpg" alt="Data Fundamentals certificate from IBM SkillsBuild" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Data Fundamentals</b><span>IBM SkillsBuild</span></figcaption>
+            <figcaption><b>Data Fundamentals</b><span>IBM SkillsBuild</span><a class="verify" href="https://www.credly.com/badges/b8dcce38-8507-47fe-9033-03f9079af939" target="_blank" rel="noopener" aria-label="Verify Data Fundamentals from IBM SkillsBuild">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
           <figure class="cert reveal" data-shape="rect" data-aspect="1.322" data-title="AI Fluency: Framework &amp; Foundations" data-issuer="Anthropic" data-accent="#5f7348">
             <div class="coinbox"><img src="images/certs/anthropic.jpg" alt="AI Fluency: Framework &amp; Foundations certificate from Anthropic" loading="lazy"><canvas aria-hidden="true"></canvas></div>
             <figcaption><b>AI Fluency: Framework &amp; Foundations</b><span>Anthropic</span></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="poly" data-aspect="0.8274" data-poly="-0.0636,1.2087;-0.4631,1.1705;-0.6412,1.1323;-0.7532,1.0941;-0.8397,1.056;-0.9059,1.0178;-0.9542,0.9796;-0.9822,0.9415;-1.0,0.9033;-1.0,0.8651;-1.0,0.827;-1.0,0.7888;-1.0,0.7506;-1.0,0.7125;-1.0,0.6743;-1.0,0.6361;-1.0,0.598;-1.0,0.5598;-1.0,0.5216;-1.0,0.4835;-1.0,0.4453;-1.0,0.4071;-1.0,0.369;-1.0,0.3308;-1.0,0.2926;-1.0,0.2545;-1.0,0.2163;-1.0,0.1781;-1.0,0.1399;-1.0,0.1018;-1.0,0.0636;-1.0,0.0254;-1.0,-0.0127;-1.0,-0.0509;-1.0,-0.0891;-1.0,-0.1272;-1.0,-0.1654;-1.0,-0.2036;-1.0,-0.2417;-1.0,-0.2799;-1.0,-0.3181;-1.0,-0.3562;-1.0,-0.3944;-1.0,-0.4326;-1.0,-0.4707;-1.0,-0.5089;-1.0,-0.5471;-0.9873,-0.5852;-0.9389,-0.6234;-0.8779,-0.6616;-0.8142,-0.6997;-0.7532,-0.7379;-0.6947,-0.7761;-0.631,-0.8142;-0.57,-0.8524;-0.5115,-0.8906;-0.4478,-0.9288;-0.3842,-0.9669;-0.3257,-1.0051;-0.2646,-1.0433;-0.2036,-1.0814;-0.145,-1.1196;-0.0814,-1.1578;-0.0204,-1.1959;-0.0051,-1.2061;0.0102,-1.2061;0.0254,-1.1959;0.084,-1.1578;0.1476,-1.1196;0.2061,-1.0814;0.2697,-1.0433;0.3308,-1.0051;0.3893,-0.9669;0.4529,-0.9288;0.514,-0.8906;0.5751,-0.8524;0.6336,-0.8142;0.6972,-0.7761;0.7557,-0.7379;0.8168,-0.6997;0.8804,-0.6616;0.9415,-0.6234;0.9898,-0.5852;1.0,-0.5471;1.0,-0.5089;1.0,-0.4707;1.0,-0.4326;1.0,-0.3944;1.0,-0.3562;1.0,-0.3181;1.0,-0.2799;1.0,-0.2417;1.0,-0.2036;1.0,-0.1654;1.0,-0.1272;1.0,-0.0891;1.0,-0.0509;1.0,-0.0127;1.0,0.0254;1.0,0.0636;1.0,0.1018;1.0,0.1399;1.0,0.1781;1.0,0.2163;1.0,0.2545;1.0,0.2926;1.0,0.3308;1.0,0.369;1.0,0.4071;1.0,0.4453;1.0,0.4835;1.0,0.5216;1.0,0.5598;1.0,0.598;1.0,0.6361;1.0,0.6743;1.0,0.7125;1.0,0.7506;1.0,0.7888;1.0,0.827;1.0,0.8651;1.0,0.9033;0.9847,0.9415;0.9567,0.9796;0.9109,1.0178;0.8448,1.056;0.7557,1.0941;0.6438,1.1323;0.4656,1.1705;0.0662,1.2087" data-title="Generative AI Fundamentals" data-issuer="Databricks Academy" data-accent="#1d3d4a">
+          <figure class="cert reveal" data-href="https://credentials.databricks.com/2dd2a5be-2a02-42a9-b18b-727bc862a22d" data-shape="poly" data-aspect="0.8274" data-poly="-0.0636,1.2087;-0.4631,1.1705;-0.6412,1.1323;-0.7532,1.0941;-0.8397,1.056;-0.9059,1.0178;-0.9542,0.9796;-0.9822,0.9415;-1.0,0.9033;-1.0,0.8651;-1.0,0.827;-1.0,0.7888;-1.0,0.7506;-1.0,0.7125;-1.0,0.6743;-1.0,0.6361;-1.0,0.598;-1.0,0.5598;-1.0,0.5216;-1.0,0.4835;-1.0,0.4453;-1.0,0.4071;-1.0,0.369;-1.0,0.3308;-1.0,0.2926;-1.0,0.2545;-1.0,0.2163;-1.0,0.1781;-1.0,0.1399;-1.0,0.1018;-1.0,0.0636;-1.0,0.0254;-1.0,-0.0127;-1.0,-0.0509;-1.0,-0.0891;-1.0,-0.1272;-1.0,-0.1654;-1.0,-0.2036;-1.0,-0.2417;-1.0,-0.2799;-1.0,-0.3181;-1.0,-0.3562;-1.0,-0.3944;-1.0,-0.4326;-1.0,-0.4707;-1.0,-0.5089;-1.0,-0.5471;-0.9873,-0.5852;-0.9389,-0.6234;-0.8779,-0.6616;-0.8142,-0.6997;-0.7532,-0.7379;-0.6947,-0.7761;-0.631,-0.8142;-0.57,-0.8524;-0.5115,-0.8906;-0.4478,-0.9288;-0.3842,-0.9669;-0.3257,-1.0051;-0.2646,-1.0433;-0.2036,-1.0814;-0.145,-1.1196;-0.0814,-1.1578;-0.0204,-1.1959;-0.0051,-1.2061;0.0102,-1.2061;0.0254,-1.1959;0.084,-1.1578;0.1476,-1.1196;0.2061,-1.0814;0.2697,-1.0433;0.3308,-1.0051;0.3893,-0.9669;0.4529,-0.9288;0.514,-0.8906;0.5751,-0.8524;0.6336,-0.8142;0.6972,-0.7761;0.7557,-0.7379;0.8168,-0.6997;0.8804,-0.6616;0.9415,-0.6234;0.9898,-0.5852;1.0,-0.5471;1.0,-0.5089;1.0,-0.4707;1.0,-0.4326;1.0,-0.3944;1.0,-0.3562;1.0,-0.3181;1.0,-0.2799;1.0,-0.2417;1.0,-0.2036;1.0,-0.1654;1.0,-0.1272;1.0,-0.0891;1.0,-0.0509;1.0,-0.0127;1.0,0.0254;1.0,0.0636;1.0,0.1018;1.0,0.1399;1.0,0.1781;1.0,0.2163;1.0,0.2545;1.0,0.2926;1.0,0.3308;1.0,0.369;1.0,0.4071;1.0,0.4453;1.0,0.4835;1.0,0.5216;1.0,0.5598;1.0,0.598;1.0,0.6361;1.0,0.6743;1.0,0.7125;1.0,0.7506;1.0,0.7888;1.0,0.827;1.0,0.8651;1.0,0.9033;0.9847,0.9415;0.9567,0.9796;0.9109,1.0178;0.8448,1.056;0.7557,1.0941;0.6438,1.1323;0.4656,1.1705;0.0662,1.2087" data-title="Generative AI Fundamentals" data-issuer="Databricks Academy" data-accent="#1d3d4a">
             <div class="coinbox"><img src="images/certs/databricks.webp" alt="Generative AI Fundamentals accreditation badge from Databricks Academy" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Generative AI Fundamentals</b><span>Databricks Academy</span></figcaption>
+            <figcaption><b>Generative AI Fundamentals</b><span>Databricks Academy</span><a class="verify" href="https://credentials.databricks.com/2dd2a5be-2a02-42a9-b18b-727bc862a22d" target="_blank" rel="noopener" aria-label="Verify Generative AI Fundamentals from Databricks Academy">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="Data Analysis" data-issuer="The Global Career Accelerator" data-accent="#9c7d3c">
+          <figure class="cert reveal" data-href="https://www.credential.net/fb2f8fd4-1e68-45af-96e1-539e19bb2f3d" data-shape="circle" data-aspect="1" data-title="Data Analysis" data-issuer="The Global Career Accelerator" data-accent="#9c7d3c">
             <div class="coinbox"><img src="images/certs/gca-data-analysis.webp" alt="Data Analysis certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Data Analysis</b><span>The Global Career Accelerator</span></figcaption>
+            <figcaption><b>Data Analysis</b><span>The Global Career Accelerator</span><a class="verify" href="https://www.credential.net/fb2f8fd4-1e68-45af-96e1-539e19bb2f3d" target="_blank" rel="noopener" aria-label="Verify Data Analysis from The Global Career Accelerator">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="Data Visualization" data-issuer="The Global Career Accelerator" data-accent="#1f8fd6">
+          <figure class="cert reveal" data-href="https://www.credential.net/46527d76-27dd-472d-b4c9-0ef3816ce539" data-shape="circle" data-aspect="1" data-title="Data Visualization" data-issuer="The Global Career Accelerator" data-accent="#1f8fd6">
             <div class="coinbox"><img src="images/certs/gca-data-viz.webp" alt="Data Visualization certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Data Visualization</b><span>The Global Career Accelerator</span></figcaption>
+            <figcaption><b>Data Visualization</b><span>The Global Career Accelerator</span><a class="verify" href="https://www.credential.net/46527d76-27dd-472d-b4c9-0ef3816ce539" target="_blank" rel="noopener" aria-label="Verify Data Visualization from The Global Career Accelerator">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="AI Professional Skills" data-issuer="The Global Career Accelerator" data-accent="#8a72c9">
+          <figure class="cert reveal" data-href="https://www.credential.net/6f3c6778-7047-4e12-9685-9a04c6a8d3f8" data-shape="circle" data-aspect="1" data-title="AI Professional Skills" data-issuer="The Global Career Accelerator" data-accent="#8a72c9">
             <div class="coinbox"><img src="images/certs/gca-ai.webp" alt="AI Professional Skills certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>AI Professional Skills</b><span>The Global Career Accelerator</span></figcaption>
+            <figcaption><b>AI Professional Skills</b><span>The Global Career Accelerator</span><a class="verify" href="https://www.credential.net/6f3c6778-7047-4e12-9685-9a04c6a8d3f8" target="_blank" rel="noopener" aria-label="Verify AI Professional Skills from The Global Career Accelerator">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
-          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="Intercultural Skills" data-issuer="The Global Career Accelerator" data-accent="#3e6fc4">
+          <figure class="cert reveal" data-href="https://www.credential.net/d1117e75-329b-427c-bcf4-496160e0c89d" data-shape="circle" data-aspect="1" data-title="Intercultural Skills" data-issuer="The Global Career Accelerator" data-accent="#3e6fc4">
             <div class="coinbox"><img src="images/certs/gca-intercultural.webp" alt="Intercultural Skills certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
-            <figcaption><b>Intercultural Skills</b><span>The Global Career Accelerator</span></figcaption>
+            <figcaption><b>Intercultural Skills</b><span>The Global Career Accelerator</span><a class="verify" href="https://www.credential.net/d1117e75-329b-427c-bcf4-496160e0c89d" target="_blank" rel="noopener" aria-label="Verify Intercultural Skills from The Global Career Accelerator">Verify <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></a></figcaption>
           </figure>
         </div>
       </div>
@@ -804,17 +811,28 @@
     addEventListener("scroll", onScroll, { passive: true });
     onScroll();
   </script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js" defer></script>
-  <script src="certs.js" defer></script>
+  <script>
+    // The 3D pieces (Block U, certification coins) load only after the page has painted and gone idle,
+    // so the text and buttons are usable right away on slower phones.
+    function loadScript(src) { return new Promise((ok, fail) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.body.appendChild(s); }); }
+    function start3D() {
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js").then(() => {
+        initBlockU();
+        // coins are built when their section gets close to the screen
+        const certs = document.querySelector(".certs");
+        if (certs) new IntersectionObserver((e, o) => { if (e[0].isIntersecting) { o.disconnect(); loadScript("certs.js"); } }, { rootMargin: "800px" }).observe(certs);
+      }).catch(() => document.querySelector(".ustage")?.classList.add("nogl"));
+    }
+    addEventListener("load", () => (window.requestIdleCallback || setTimeout)(start3D, { timeout: 1500 }));
+  </script>
   <script>
     /* Block U: extruded from the outline of the campus sculpture, lit like painted steel */
-    window.addEventListener("DOMContentLoaded", () => {
+    function initBlockU() {
       const stage = document.querySelector(".ustage"), canvas = stage && stage.querySelector(".ucanvas");
       if (!stage || !window.THREE) return;
       const T = THREE;
       let renderer;
-      try { renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { return; }
+      try { renderer = new T.WebGLRenderer({ canvas, antialias: true, alpha: true }); } catch (e) { stage.classList.add("nogl"); return; }
       renderer.setPixelRatio(Math.min(devicePixelRatio * 1.25, 3));
       renderer.outputEncoding = T.sRGBEncoding;
       renderer.toneMapping = T.ACESFilmicToneMapping; renderer.toneMappingExposure = .82;
@@ -855,7 +873,7 @@
       const inkMat = new T.MeshPhysicalMaterial({ roughness: .55, metalness: 0, clearcoat: .35, clearcoatRoughness: .3, envMapIntensity: .08 });
       const setInk = () => inkMat.color.set(matchMedia("(prefers-color-scheme: dark)").matches ? 0xe8ecf4 : 0x050507);
       setInk(); matchMedia("(prefers-color-scheme: dark)").addEventListener("change", setInk);
-      if (window.opentype) {
+      loadScript("https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js").then(() => {
         opentype.load("https://cdn.jsdelivr.net/npm/@fontsource/caveat@5.0.8/files/caveat-latin-700-normal.woff", (err, font) => {
           if (err || !font) return;
           const size = 10.5, path = font.getPath("Finance, Class of 2028", 0, 0, size), shapes = [];
@@ -888,7 +906,7 @@
           lean.position.set(10, floorY + .5, 40);
           scene.add(lean); stage.classList.add("gltext");
         });
-      }
+      }).catch(() => stage.classList.add("nogl"));
 
       // invisible floor that only shows the shadows, plus a dark contact shadow right under the base
       const floor = new T.Mesh(new T.PlaneGeometry(600, 600), new T.ShadowMaterial({ opacity: .2 }));
@@ -920,7 +938,7 @@
         requestAnimationFrame(frame);
       }
       requestAnimationFrame(frame);
-    });
+    }
   </script>
   <!-- visitor stats (GoatCounter: no cookies, no personal data) -->
   <script data-goatcounter="https://masonhainey.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
