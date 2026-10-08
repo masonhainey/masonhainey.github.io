@@ -205,6 +205,7 @@
       color: var(--ink); white-space: nowrap;
     }
     .hero .lead { max-width: min(54ch, calc(100% - 520px)); }
+    .hero .stats { max-width: min(720px, calc(100% - 480px)); }
 
 
     h1 {
@@ -218,6 +219,8 @@
     }
 
     h1 em { font-style: italic; color: var(--accent); }
+    /* the second line reads as a subtitle under the name */
+    .hero h1 em { display: block; font-size: .52em; line-height: 1.15; margin-top: 10px; letter-spacing: -.01em; white-space: nowrap; }
 
     .lead { font-size: clamp(18px, 2.2vw, 21px); color: var(--muted); max-width: 60ch; margin: 0 0 30px; }
 
@@ -438,6 +441,7 @@
       .ustage { width: 460px; height: 460px; top: 20px; right: -30px; }
       .ucaption { font-size: 34px; left: 34%; }
       .hero .lead { max-width: min(54ch, calc(100% - 360px)); }
+      .hero .stats { max-width: 720px; }
     }
     @media (max-width: 900px) {
       .ustage { position: relative; top: auto; right: auto; width: 320px; height: 320px; margin: -40px 0 -10px -40px; }
@@ -501,7 +505,7 @@
         <canvas class="ucanvas" aria-hidden="true"></canvas>
         <p class="ucaption" aria-hidden="true">Finance, Class of 2028</p>
       </div>
-      <h1>I build the tools<br> <em>I wish I had.</em></h1>
+      <h1>Mason Hainey <em>Finance, University of Utah</em></h1>
       <p class="lead">I'm Mason, a Finance student who builds data-driven tools with AI. I've designed and launched three web apps, from an AI dashboard that runs my recruiting and classes to a 3D productivity app and a sports analytics platform.</p>
       <div class="btns">
         <a class="btn primary" href="#projects">See my projects
