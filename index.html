@@ -341,6 +341,20 @@
     .job.small h3 { font-size: 21px; }
     .job.small p.one { margin: 0; color: var(--muted); }
 
+    /* ---------- certifications ---------- */
+    .certs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 18px 14px; }
+    .cert { margin: 0; text-align: center; }
+    .coinbox { position: relative; aspect-ratio: 1; }
+    .coinbox img, .coinbox canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .coinbox img { inset: 14%; width: 72%; height: 72%; object-fit: contain; border-radius: 10px; }
+    .cert[data-shape="circle"] .coinbox img { border-radius: 50%; }
+    .coinbox canvas { filter: drop-shadow(0 14px 14px rgba(15, 29, 51, .22)); }
+    .certs.gl .coinbox img { visibility: hidden; }
+    .cert figcaption { margin-top: 4px; }
+    .cert figcaption b { display: block; font-size: 15.5px; line-height: 1.3; }
+    .cert figcaption span { font-size: 13.5px; color: var(--muted); }
+    @media (max-width: 560px) { .certs { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
     /* ---------- resume + contact ---------- */
     .cta {
       background: var(--navy);
@@ -622,6 +636,60 @@
       </div>
     </section>
 
+    <section id="certifications">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div>
+            <p class="kicker">Certifications</p>
+            <h2>Credentials I've earned</h2>
+          </div>
+          <p>Bloomberg, IBM, Anthropic, Databricks and The Global Career Accelerator. Hover or tap a coin to hold it still.</p>
+        </div>
+        <div class="certs">
+          <figure class="cert reveal" data-shape="rect" data-aspect="1.42" data-title="Bloomberg Market Concepts" data-issuer="Bloomberg for Education" data-accent="#c47a12">
+            <div class="coinbox"><img src="images/certs/bmc.jpg" alt="Bloomberg Market Concepts certificate from Bloomberg for Education" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Bloomberg Market Concepts</b><span>Bloomberg for Education</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="rect" data-aspect="1.421" data-title="Bloomberg Finance Fundamentals" data-issuer="Bloomberg for Education" data-accent="#2f5fd0">
+            <div class="coinbox"><img src="images/certs/bff.jpg" alt="Bloomberg Finance Fundamentals certificate from Bloomberg for Education" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Bloomberg Finance Fundamentals</b><span>Bloomberg for Education</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="rect" data-aspect="1.408" data-title="Bloomberg Spreadsheet Analysis" data-issuer="Bloomberg for Education" data-accent="#1f8a78">
+            <div class="coinbox"><img src="images/certs/bsa.jpg" alt="Bloomberg Spreadsheet Analysis certificate from Bloomberg for Education" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Bloomberg Spreadsheet Analysis</b><span>Bloomberg for Education</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="rect" data-aspect="1" data-title="Data Fundamentals" data-issuer="IBM SkillsBuild" data-accent="#b0306f">
+            <div class="coinbox"><img src="images/certs/ibm.jpg" alt="Data Fundamentals certificate from IBM SkillsBuild" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Data Fundamentals</b><span>IBM SkillsBuild</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="rect" data-aspect="1.322" data-title="AI Fluency: Framework &amp; Foundations" data-issuer="Anthropic" data-accent="#5f7348">
+            <div class="coinbox"><img src="images/certs/anthropic.jpg" alt="AI Fluency: Framework &amp; Foundations certificate from Anthropic" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>AI Fluency: Framework &amp; Foundations</b><span>Anthropic</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="poly" data-aspect="0.8274" data-poly="-0.0636,1.2087;-0.4631,1.1705;-0.6412,1.1323;-0.7532,1.0941;-0.8397,1.056;-0.9059,1.0178;-0.9542,0.9796;-0.9822,0.9415;-1.0,0.9033;-1.0,0.8651;-1.0,0.827;-1.0,0.7888;-1.0,0.7506;-1.0,0.7125;-1.0,0.6743;-1.0,0.6361;-1.0,0.598;-1.0,0.5598;-1.0,0.5216;-1.0,0.4835;-1.0,0.4453;-1.0,0.4071;-1.0,0.369;-1.0,0.3308;-1.0,0.2926;-1.0,0.2545;-1.0,0.2163;-1.0,0.1781;-1.0,0.1399;-1.0,0.1018;-1.0,0.0636;-1.0,0.0254;-1.0,-0.0127;-1.0,-0.0509;-1.0,-0.0891;-1.0,-0.1272;-1.0,-0.1654;-1.0,-0.2036;-1.0,-0.2417;-1.0,-0.2799;-1.0,-0.3181;-1.0,-0.3562;-1.0,-0.3944;-1.0,-0.4326;-1.0,-0.4707;-1.0,-0.5089;-1.0,-0.5471;-0.9873,-0.5852;-0.9389,-0.6234;-0.8779,-0.6616;-0.8142,-0.6997;-0.7532,-0.7379;-0.6947,-0.7761;-0.631,-0.8142;-0.57,-0.8524;-0.5115,-0.8906;-0.4478,-0.9288;-0.3842,-0.9669;-0.3257,-1.0051;-0.2646,-1.0433;-0.2036,-1.0814;-0.145,-1.1196;-0.0814,-1.1578;-0.0204,-1.1959;-0.0051,-1.2061;0.0102,-1.2061;0.0254,-1.1959;0.084,-1.1578;0.1476,-1.1196;0.2061,-1.0814;0.2697,-1.0433;0.3308,-1.0051;0.3893,-0.9669;0.4529,-0.9288;0.514,-0.8906;0.5751,-0.8524;0.6336,-0.8142;0.6972,-0.7761;0.7557,-0.7379;0.8168,-0.6997;0.8804,-0.6616;0.9415,-0.6234;0.9898,-0.5852;1.0,-0.5471;1.0,-0.5089;1.0,-0.4707;1.0,-0.4326;1.0,-0.3944;1.0,-0.3562;1.0,-0.3181;1.0,-0.2799;1.0,-0.2417;1.0,-0.2036;1.0,-0.1654;1.0,-0.1272;1.0,-0.0891;1.0,-0.0509;1.0,-0.0127;1.0,0.0254;1.0,0.0636;1.0,0.1018;1.0,0.1399;1.0,0.1781;1.0,0.2163;1.0,0.2545;1.0,0.2926;1.0,0.3308;1.0,0.369;1.0,0.4071;1.0,0.4453;1.0,0.4835;1.0,0.5216;1.0,0.5598;1.0,0.598;1.0,0.6361;1.0,0.6743;1.0,0.7125;1.0,0.7506;1.0,0.7888;1.0,0.827;1.0,0.8651;1.0,0.9033;0.9847,0.9415;0.9567,0.9796;0.9109,1.0178;0.8448,1.056;0.7557,1.0941;0.6438,1.1323;0.4656,1.1705;0.0662,1.2087" data-title="Generative AI Fundamentals" data-issuer="Databricks Academy" data-accent="#1d3d4a">
+            <div class="coinbox"><img src="images/certs/databricks.png" alt="Generative AI Fundamentals accreditation badge from Databricks Academy" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Generative AI Fundamentals</b><span>Databricks Academy</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="Data Analysis" data-issuer="The Global Career Accelerator" data-accent="#9c7d3c">
+            <div class="coinbox"><img src="images/certs/gca-data-analysis.png" alt="Data Analysis certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Data Analysis</b><span>The Global Career Accelerator</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="Data Visualization" data-issuer="The Global Career Accelerator" data-accent="#1f8fd6">
+            <div class="coinbox"><img src="images/certs/gca-data-viz.png" alt="Data Visualization certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Data Visualization</b><span>The Global Career Accelerator</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="AI Professional Skills" data-issuer="The Global Career Accelerator" data-accent="#8a72c9">
+            <div class="coinbox"><img src="images/certs/gca-ai.png" alt="AI Professional Skills certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>AI Professional Skills</b><span>The Global Career Accelerator</span></figcaption>
+          </figure>
+          <figure class="cert reveal" data-shape="circle" data-aspect="1" data-title="Intercultural Skills" data-issuer="The Global Career Accelerator" data-accent="#3e6fc4">
+            <div class="coinbox"><img src="images/certs/gca-intercultural.png" alt="Intercultural Skills certificate from The Global Career Accelerator" loading="lazy"><canvas aria-hidden="true"></canvas></div>
+            <figcaption><b>Intercultural Skills</b><span>The Global Career Accelerator</span></figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section id="about">
       <div class="wrap">
         <div class="sec-head reveal">
@@ -737,6 +805,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/opentype.js/1.3.4/opentype.min.js" defer></script>
+  <script src="certs.js" defer></script>
   <script>
     /* Block U: extruded from the outline of the campus sculpture, lit like painted steel */
     window.addEventListener("DOMContentLoaded", () => {
