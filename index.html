@@ -326,6 +326,21 @@
     .focus b { display: block; font-size: 16px; margin-bottom: 4px; }
     .focus span { font-size: 14.5px; color: var(--muted); line-height: 1.5; display: block; }
 
+    /* ---------- experience ---------- */
+    .jobs { display: grid; gap: 16px; }
+    .job { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 28px; }
+    .job .when { font-size: 14px; font-weight: 700; color: var(--accent); margin: 0 0 6px; }
+    .job h3 { font-family: var(--serif); font-weight: 600; font-size: 25px; line-height: 1.15; margin: 0 0 4px; }
+    .job .org { font-weight: 700; margin: 0; }
+    .job .where { font-size: 14.5px; color: var(--muted); margin: 2px 0 0; }
+    .job ul.points { margin: 0 0 16px; padding-left: 20px; }
+    .job ul.points li { margin-bottom: 8px; }
+    .job ul.points li::marker { color: var(--accent); }
+    .job .chips li { font-size: 14px; padding: 6px 12px; }
+    .job.small { padding-top: 22px; padding-bottom: 22px; }
+    .job.small h3 { font-size: 21px; }
+    .job.small p.one { margin: 0; color: var(--muted); }
+
     /* ---------- resume + contact ---------- */
     .cta {
       background: var(--navy);
@@ -405,6 +420,7 @@
       .media { min-height: 0; aspect-ratio: 16 / 10; }
       .media.icon { aspect-ratio: 16 / 8; }
       .focus { grid-template-columns: repeat(2, 1fr); }
+      .job { grid-template-columns: 1fr; gap: 14px; }
       .cta { padding: 32px 26px; }
     }
 
@@ -437,9 +453,10 @@
       <a class="brand" href="#top"><span class="mono" aria-hidden="true">MH</span><span>Mason Hainey</span></a>
       <div class="links">
         <a href="#projects">Projects</a>
-        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a class="opt" href="#about">About</a>
         <a class="opt" href="#skills">Skills</a>
-        <a href="Mason-Hainey-Resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="opt" href="Mason-Hainey-Resume.pdf" target="_blank" rel="noopener">Resume</a>
         <a href="#contact">Contact</a>
       </div>
     </div>
@@ -542,6 +559,63 @@
                 <a class="btn ghost" href="mailto:mason.hainey@utah.edu?subject=Semester%20HQ%20walkthrough">Ask for a live walkthrough</a>
               </div>
               <p class="note">The demo uses a made-up student with simulated Gmail and Google Calendar. The real version runs on my own accounts.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <div>
+            <p class="kicker">Experience</p>
+            <h2>Where I've worked</h2>
+          </div>
+          <p>Analytics, risk and teamwork, from transit data to a NASA-style mission.</p>
+        </div>
+        <div class="jobs">
+          <article class="card job reveal">
+            <div>
+              <p class="when">Sept 2026 – Present</p>
+              <h3>Mission Assurance Team Member</h3>
+              <p class="org">NASA L’SPACE</p>
+              <p class="where">Mission Concept Academy · Remote</p>
+            </div>
+            <div>
+              <ul class="points">
+                <li>Work on a multidisciplinary team developing a NASA-style mission concept through the Mission Concept Academy.</li>
+                <li>Support mission assurance through risk assessment, project assurance and technical decision-making.</li>
+                <li>Identify potential mission risks and develop mitigation strategies throughout mission planning.</li>
+              </ul>
+              <ul class="chips"><li>Risk assessment</li><li>Project assurance</li><li>Cross-functional teams</li></ul>
+            </div>
+          </article>
+          <article class="card job reveal">
+            <div>
+              <p class="when">May 2026 – Aug 2026</p>
+              <h3>Data Analytics Intern</h3>
+              <p class="org">The Global Career Accelerator</p>
+              <p class="where">Remote</p>
+            </div>
+            <div>
+              <ul class="points">
+                <li>Analyzed BART ridership records to find weekday commuting patterns and high-volume transit trends for operational insights.</li>
+                <li>Analyzed 6,000+ trending YouTube videos to identify engagement drivers and recommend a data-driven content strategy.</li>
+                <li>Built Excel dashboards, PivotTables and visualizations to evaluate performance metrics and support business recommendations.</li>
+              </ul>
+              <ul class="chips"><li>Excel</li><li>PivotTables</li><li>Dashboards</li><li>Data storytelling</li></ul>
+            </div>
+          </article>
+          <article class="card job small reveal">
+            <div>
+              <p class="when">May 2025 – Aug 2026</p>
+              <h3>Food Runner / Busser</h3>
+              <p class="org">Amalfi Cucina Italiana</p>
+              <p class="where">San Marcos, CA</p>
+            </div>
+            <div>
+              <p class="one">Kept service running smoothly in a high-volume, award-winning restaurant recognized by San Diego Magazine, working closely with servers and kitchen staff.</p>
             </div>
           </article>
         </div>
